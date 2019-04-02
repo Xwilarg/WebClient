@@ -25,7 +25,7 @@ function canvasDraw(colorArray) {
             for (let i = 0; i < imageData.data.length; i += 4) {
                 let color = colorArray[x * 10 + y];
                 imageData.data[i] = color.substring(0, 3);
-                imageData.data[i + 1] = color.substring(4, 6);
+                imageData.data[i + 1] = color.substring(3, 6);
                 imageData.data[i + 2] = color.substring(6, 9);
                 imageData.data[i + 3] = 255;
             }
