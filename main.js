@@ -6,7 +6,7 @@ function onMouseDown(event) {
         }
     }
     http.open("POST", "http://localhost:8082", true);
-    http.send(getPosition(event.offsetX) + ";" + getPosition(event.offsetY) + ";" + color);
+    http.send(Math.trunc(getPosition(event.offsetX)) + ";" + Math.trunc(getPosition(event.offsetY)) + ";" + color);
 }
 
 function getPosition(value) {
