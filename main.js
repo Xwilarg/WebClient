@@ -35,14 +35,14 @@ function canvasDraw(colorArray) {
 }
 
 var color;
+var canvasColor;
 
-function canvasLaunch() {
+function generateNewColor() {
     let red = Math.floor(Math.random() * 256);
     let green = Math.floor(Math.random() * 256);
     let blue = Math.floor(Math.random() * 256);
     color = getColorValue(red) + getColorValue(green) + getColorValue(blue);
-    let canvas = document.getElementById("canvasColor");
-    let context = canvas.getContext("2d");
+    let context = canvasColor.getContext("2d");
     let imageData = context.createImageData(25, 25);
     for (let i = 0; i < imageData.data.length; i += 4) {
         imageData.data[i] = red;
@@ -51,6 +51,12 @@ function canvasLaunch() {
         imageData.data[i + 3] = 255;
     }
     context.putImageData(imageData, 0, 0);
+}
+
+function canvasLaunch() {
+    canvasColor = document.getElementById("canvasColor");
+    canvasColor.addEventListener("mousedown", generateNewColor);
+    generateNewColor();
     let http = new XMLHttpRequest();
     http.onreadystatechange = async function() {
         if (this.readyState === 4 && this.status === 200) {
