@@ -1,7 +1,18 @@
 function onMouseDown(event) {
     let http = new XMLHttpRequest();
+    http.onreadystatechange = async function() {
+        if (this.readyState === 4 && this.status === 200) {
+            await canvasDraw(JSON.parse(this.responseText));
+        }
+    }
     http.open("POST", "http://localhost:8082", true);
-    http.send(event.offsetX + ";" + event.offsetY + ";" + color);
+    http.send(getPosition(event.offsetX) + ";" + getPosition(event.offsetY) + ";" + color);
+}
+
+function getPosition(value) {
+    if (value <= 0) return 0;
+    if (value >= 500) return 10;
+    return value / 50;
 }
 
 function canvasDraw(colorArray) {
