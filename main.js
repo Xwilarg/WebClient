@@ -5,7 +5,7 @@ function onMouseDown(event) {
             await canvasDraw(JSON.parse(this.responseText));
         }
     }
-    http.open("POST", "http://localhost:8082", true);
+    http.open("POST", "http://localhost:8082/update", true);
     http.send(Math.trunc(getPosition(event.offsetX)) + ";" + Math.trunc(getPosition(event.offsetY)) + ";" + color);
 }
 
@@ -64,7 +64,7 @@ function canvasLaunch() {
         }
     }
     setInterval(function() {
-        http.open("GET", "http://localhost:8082", true);
+        http.open("GET", "http://localhost:8082/get", true);
         http.send();
     }, 1000);
 }
